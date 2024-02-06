@@ -1,0 +1,88 @@
+<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
+<idea-plugin>
+    <id>org.jetbrains.research.ictl.bf</id>
+    <name>BusFactor</name>
+    <vendor>ictl</vendor>
+
+    <description><![CDATA[
+    <p>An experimental plugin for bus factor analysis.</p>
+
+    <p>The plugin provides:</p>
+    <ul>
+        <li>Interactive treemap visualization of the bus factor for the project.</li>
+        <li>Inspections based on the bus factor.</li>
+    </ul>
+    ]]>
+    </description>>
+
+    <depends>com.intellij.modules.platform</depends>
+    <depends>Git4Idea</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <appStarter
+                implementation="org.jetbrains.research.ictl.riskypatterns.appstarter.BusFactorAppStarter"
+                id="busFactor"
+        />
+        <globalInspection
+                implementationClass="org.jetbrains.research.ictl.riskypatterns.inspections.AbandonedFilesInspection"
+                id="AbandonedFilesInspection"
+                groupPath="Bus factor"
+                enabledByDefault="false"
+                displayName="Abandoned files inspection"
+                shortName="AbandonedFilesInspection"
+                groupName="Files inspections"
+        />
+        <globalInspection
+                implementationClass="org.jetbrains.research.ictl.riskypatterns.inspections.MinorContributorsInspection"
+                id="MinorContributorsInspection"
+                groupPath="Bus factor"
+                enabledByDefault="false"
+                displayName="Minor contributors inspection"
+                shortName="MinorContributorsInspection"
+                groupName="Developers inspections"
+        />
+        <globalInspection
+                implementationClass="org.jetbrains.research.ictl.riskypatterns.inspections.AbandonedModuleInspection"
+                id="AbandonedModuleInspection"
+                groupPath="Bus factor"
+                enabledByDefault="false"
+                displayName="Abandoned module inspection"
+                shortName="AbandonedModuleInspection"
+                groupName="Files inspections"
+        />
+        <globalInspection
+                implementationClass="org.jetbrains.research.ictl.riskypatterns.inspections.NoDataAboutFilesInspection"
+                id="NoDataAboutFilesInspection"
+                groupPath="Bus factor"
+                enabledByDefault="false"
+                displayName="No data about file inspection"
+                shortName="NoDataAboutFilesInspection"
+                groupName="Files inspections"
+        />
+        <vcsStartupActivity
+                implementation="org.jetbrains.research.ictl.riskypatterns.startupactivity.BusFactorStartupActivity"/>
+        <applicationConfigurable
+                displayName="BusFactor Plugin"
+                instance="org.jetbrains.research.ictl.riskypatterns.settings.BusFactorConfigurable"
+                id="org.jetbrains.research.ictl.riskypatterns.settings.BusFactorConfigurable"
+        />
+        <applicationService
+                serviceImplementation="org.jetbrains.research.ictl.riskypatterns.settings.BusFactorConfigService"/>
+        <applicationService
+                serviceImplementation="org.jetbrains.research.ictl.riskypatterns.services.BusFactorService"/>
+
+        <notificationGroup id="BF Notification Group"
+                           displayType="BALLOON"
+                           key="notification.bf"/>
+
+    </extensions>
+
+    <actions>
+        <action
+                id="org.jetbrains.research.ictl.riskypatterns.action.BusFactorReportAction"
+                class="org.jetbrains.research.ictl.riskypatterns.action.BusFactorReportAction"
+                text="BusFactor Report"
+        />
+    </actions>
+
+</idea-plugin>
