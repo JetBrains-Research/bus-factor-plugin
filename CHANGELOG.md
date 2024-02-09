@@ -2,4 +2,8 @@
 
 # idea-plugin-template Changelog
 
-## [Unreleased]
+## [0.0.3]
+
+### Removed
+
+- Remove empty icon
