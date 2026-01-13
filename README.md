@@ -1,3 +1,6 @@
+Repository archived by abarilo as no longer maintained
+
+
 # BusFactor Plugin
 <!-- Plugin description -->
 <p>An experimental plugin for bus factor analysis.</p>
